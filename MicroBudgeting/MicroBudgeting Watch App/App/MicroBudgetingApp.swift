@@ -8,7 +8,12 @@
 import SwiftUI
 
 @main
-struct MicroBudgeting_Watch_AppApp: App {
+struct MicroBudgeting: App {
+    
+    init() {
+        NotificationManager.requestNotification()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

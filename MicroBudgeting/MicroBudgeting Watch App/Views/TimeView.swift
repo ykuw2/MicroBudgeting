@@ -10,6 +10,7 @@ import SwiftUI
 struct TimeView: View {
     @AppStorage("reminderHour") private var reminderHour: Int = 9
     @AppStorage("reminderPM") private var reminderPM: Bool = true
+    @AppStorage("showMainView") private var showMainView: Bool = false
     private var showConfirmation: Bool = false
 
     var body: some View {
@@ -40,7 +41,7 @@ struct TimeView: View {
             .padding(.top, -10) // Picker has a default spacing so need to adjust this
             
             Button("Confirm") {
-                
+                showMainView = true
             }
             .buttonStyle(.bordered)
             .frame(width: 120, height: 50)
