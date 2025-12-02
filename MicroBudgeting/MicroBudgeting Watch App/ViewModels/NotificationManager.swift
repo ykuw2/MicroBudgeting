@@ -19,4 +19,34 @@ class NotificationManager {
     }
     
     // TODO: Create a static func that sends the notification
+    static func scheduledReminder(hour: Int, isPM: Bool) {
+        // The content of the reminder notification
+        let content = UNMutableNotificationContent()
+        content.title = "Spending Reminder"
+        content.body = "Make sure to track your spending today!"
+        content.sound = .default
+        
+        // The hours (0-23)
+        var notificationHour = hour % 12
+        if isPM {
+            notificationHour += 12
+        }
+        
+        // Create trigger
+        var dateComponents = DateComponents()
+        dateComponents.hour = notificationHour
+        dateComponents.minute = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        // Request
+        let request = UNNotificationRequest(identifier: "spendingReminder", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Failed to schedule notification: \(error)")
+            } else {
+                print("Succeeded to schedule notification at \(hour)\(isPM ? "PM":"AM")")
+            }
+        }
+    }
 }

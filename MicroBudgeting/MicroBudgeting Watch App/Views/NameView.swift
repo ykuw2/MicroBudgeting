@@ -40,8 +40,4 @@ var body: some View {
 
 #Preview {
     NameView()
-        .onAppear {
-            UserDefaults.standard.removeObject(forKey: "userName")
-            UserDefaults.standard.removeObject(forKey: "showTimeView")
-        }
     }

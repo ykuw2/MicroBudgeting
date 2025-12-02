@@ -26,4 +26,9 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .onAppear {
+            UserDefaults.standard.removeObject(forKey: "userName")
+            UserDefaults.standard.removeObject(forKey: "showTimeView")
+            UserDefaults.standard.removeObject(forKey: "showMainView")
+        }
 }

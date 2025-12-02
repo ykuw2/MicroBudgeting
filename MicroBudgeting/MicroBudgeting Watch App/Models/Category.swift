@@ -14,7 +14,7 @@ struct BudgetDay: Identifiable, Codable {
 }
 
 enum BudgetCategory: String, Codable, CaseIterable {
-    case low
-    case medium
-    case expensive
+    case low = "Low" // Green
+    case medium = "Medium" // Yellow
+    case high = "High" // Red
 }
