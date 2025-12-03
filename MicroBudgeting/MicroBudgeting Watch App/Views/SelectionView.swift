@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SpendingView: View {
     @Environment(\.dismiss) private var dismiss // Use this later on either selected
-    @State private var selected: BudgetCategory? // TODO: Create a key for the specific day for AppStorage.
+    @State private var selected: BudgetCategory?
+    
+    private var storage = DailySpendStorage()
     
     var body: some View {
         VStack(spacing: 12) {
@@ -19,12 +21,15 @@ struct SpendingView: View {
             
             ScrollView {
                 SpendingButton(spendingLevel: .low, selected: $selected, color: Color.green) {
+                    storage.saveToday(.low)
                     dismiss()
                 }
                 SpendingButton(spendingLevel: .medium, selected: $selected, color: Color.yellow) {
+                    storage.saveToday(.medium)
                     dismiss()
                 }
                 SpendingButton(spendingLevel: .high, selected: $selected, color: Color.red) {
+                    storage.saveToday(.high)
                     dismiss()
                 }
             }
