@@ -45,4 +45,3 @@ struct DailySpendStorage {
         return BudgetCategory(rawValue: raw)
     }
 }
-

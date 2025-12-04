@@ -1,5 +1,5 @@
 //
-//  SelectionView.swift
+//  SpendingView.swift
 //  MicroBudgeting
 //
 //  Created by Yuki Kuwahara on 12/1/25.
@@ -17,7 +17,8 @@ struct SpendingView: View {
         VStack(spacing: 12) {
             Text("How was your spending today?")
                 .multilineTextAlignment(.center)
-                .padding(.top, -40)
+                .fixedSize(horizontal: false, vertical: true) // Let the text grow vertically
+                .padding(.top, -5)
             
             ScrollView {
                 SpendingButton(spendingLevel: .low, selected: $selected, color: Color.green) {
@@ -52,8 +53,17 @@ struct SpendingButton: View {
             onTap()
         } label: {
             Text(spendingLevel.rawValue)
-                .foregroundColor(color)
+                .font(.caption2) // Small text
+                .foregroundColor(color) // Text color
+                .frame(maxWidth: .infinity) // Stretch width to max
+                .padding(.vertical, 6)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.gray.opacity(0.8))
+                )
+            
         }
+        .buttonStyle(.plain)
     }
 }
 
