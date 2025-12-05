@@ -7,15 +7,20 @@
 
 // TODO: MainView that shows the spending over time
 
+import Charts
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("dailySpendStorage") private var spendingData: Data = Data()
     @State private var showSheet = false
     
     var body: some View {
         VStack {
             HStack {
-                Spacer()
+                Text("Weekly Spending")
+                    .font(.caption)
+                    .bold()
+                
                 Button {
                     showSheet = true
                 } label: {
@@ -25,9 +30,11 @@ struct MainView: View {
                 .buttonStyle(.plain)
             }
             Spacer()
+            
+            // Some code to set up the loading for the PieChart
+            
         }
         .padding(.top, -34)
-        .padding(.trailing)
         .sheet(isPresented: $showSheet) {
             SpendingView()
         }
